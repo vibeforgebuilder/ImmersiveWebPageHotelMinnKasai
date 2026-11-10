@@ -1,0 +1,6 @@
+{
+  "name": "Minn Kasai - Architectural Hotel Tour",
+  "description": "An immersive interactive architectural walking tour and booking experience for Minn Kasai hotel in Tokyo, showcasing its illuminated portal, Japandi suites, and modern conveniences.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
