@@ -3,8 +3,27 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 
+const getBasePath = () => {
+  // 1. Explicit override from environment (e.g. GitHub Actions configure-pages output)
+  if (process.env.BASE_PATH !== undefined && process.env.BASE_PATH !== '') {
+    const p = process.env.BASE_PATH;
+    return p.endsWith('/') ? p : `${p}/`;
+  }
+  // 2. Automatic repository detection in GitHub Actions
+  if (process.env.GITHUB_REPOSITORY) {
+    const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+    if (repo && repo.toLowerCase() === `${owner.toLowerCase()}.github.io`) {
+      return '/';
+    }
+    return `/${repo}/`;
+  }
+  // 3. Fallback for local preview & development
+  return './';
+};
+
 export default defineConfig(() => {
   return {
+    base: getBasePath(),
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

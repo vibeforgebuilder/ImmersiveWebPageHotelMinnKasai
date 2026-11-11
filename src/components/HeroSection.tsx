@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowDown, Sparkles, Compass, ShieldCheck } from 'lucide-react';
+import { getAssetUrl } from '../utils/assetHelper';
 
 interface HeroSectionProps {
   onStartTour: () => void;
@@ -20,7 +21,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartTour, onOpenBoo
       {/* Background Architectural Atmosphere */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/assets/aistudio/1_d12b4430.webp"
+          src={getAssetUrl('/assets/aistudio/1_d12b4430.webp')}
           alt="Minn Kasai illuminated entrance portal with geometric light gates at dusk"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover object-center scale-105 filter brightness-[0.72] contrast-[1.08] transition-all duration-1000"

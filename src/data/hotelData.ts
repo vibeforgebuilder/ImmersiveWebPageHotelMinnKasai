@@ -1,3 +1,5 @@
+import { getAssetUrl } from '../utils/assetHelper';
+
 export interface Hotspot {
   id: string;
   x: number; // percentage from left
@@ -32,7 +34,7 @@ export interface TourStop {
   hotspots: Hotspot[];
 }
 
-export const TOUR_STOPS: TourStop[] = [
+const rawTourStops: TourStop[] = [
   {
     id: 'facade',
     stepNumber: '01',
@@ -508,6 +510,15 @@ export const TOUR_STOPS: TourStop[] = [
   },
 ];
 
+export const TOUR_STOPS: TourStop[] = rawTourStops.map((stop) => ({
+  ...stop,
+  heroImage: getAssetUrl(stop.heroImage),
+  alternateImages: stop.alternateImages?.map((alt) => ({
+    ...alt,
+    url: getAssetUrl(alt.url),
+  })),
+}));
+
 export interface RoomTypeData {
   id: string;
   name: string;
@@ -524,7 +535,7 @@ export interface RoomTypeData {
   bathroomSpecs: string[];
 }
 
-export const ROOM_CATALOG: RoomTypeData[] = [
+const rawRoomCatalog: RoomTypeData[] = [
   {
     id: 'standard-twin',
     name: 'Standard Twin Suite',
@@ -639,6 +650,12 @@ export const ROOM_CATALOG: RoomTypeData[] = [
     ],
   },
 ];
+
+export const ROOM_CATALOG: RoomTypeData[] = rawRoomCatalog.map((room) => ({
+  ...room,
+  image: getAssetUrl(room.image),
+  gallery: room.gallery.map((img) => getAssetUrl(img)),
+}));
 
 export interface TransitRoute {
   destination: string;

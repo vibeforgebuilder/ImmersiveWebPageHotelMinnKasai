@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TRANSIT_ROUTES } from '../data/hotelData';
 import { Train, Clock, ShoppingBag, Sparkles, Navigation } from 'lucide-react';
+import { getAssetUrl } from '../utils/assetHelper';
 
 export const NeighborhoodTransit: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'transit' | 'local'>('transit');
@@ -93,7 +94,7 @@ export const NeighborhoodTransit: React.FC = () => {
             <div className="bg-[#151922] border border-white/10 rounded-2xl overflow-hidden group">
               <div className="relative aspect-[16/10] overflow-hidden">
                 <img
-                  src="/assets/aistudio/10_6c59ab88.webp"
+                  src={getAssetUrl('/assets/aistudio/10_6c59ab88.webp')}
                   alt="Tobu Store supermarket and Sushiro restaurant adjacent to hotel"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -116,7 +117,7 @@ export const NeighborhoodTransit: React.FC = () => {
             <div className="bg-[#151922] border border-white/10 rounded-2xl overflow-hidden group">
               <div className="relative aspect-[16/10] overflow-hidden">
                 <img
-                  src="/assets/aistudio/11_8d8d3ccd.webp"
+                  src={getAssetUrl('/assets/aistudio/11_8d8d3ccd.webp')}
                   alt="Kasai Station on Tokyo Metro Tozai Line"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -139,7 +140,7 @@ export const NeighborhoodTransit: React.FC = () => {
             <div className="bg-[#151922] border border-white/10 rounded-2xl overflow-hidden group">
               <div className="relative aspect-[16/10] overflow-hidden">
                 <img
-                  src="/assets/aistudio/14_b08fcf0c.webp"
+                  src={getAssetUrl('/assets/aistudio/14_b08fcf0c.webp')}
                   alt="Metro Center Kasai covered shopping arcade"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
