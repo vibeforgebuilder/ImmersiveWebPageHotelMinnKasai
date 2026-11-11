@@ -192,13 +192,21 @@ If you saw an empty white screen after your initial deployment, this was caused 
 4. **Deep-Link / Refresh 404 Fallback (`404.html`)**:
    - Added `cp dist/index.html dist/404.html` to the build script so that refreshing the page or navigating directly to an anchor never returns GitHub's generic 404 page.
 
+5. **Lockfile & Node Version Compatibility in CI**:
+   - `actions/setup-node@v4` with `cache: 'npm'` failed when `package-lock.json` was missing.
+   - Node 20 runner deprecation warnings appeared on GitHub Actions.
+   - Conflicting `esbuild` peer dependency versions in `package.json` blocked clean lockfile generation.
+   - **The Fix**: Removed redundant `esbuild` override from `package.json`, generated a clean `package-lock.json`, updated the workflow to `node-version: 22`, removed the hard dependency on `cache: 'npm'`, and added a resilient fallback install step (`npm ci || npm install --legacy-peer-deps`).
+
 #### How to Apply the Fix to Your GitHub Repo:
 Simply push the latest changes:
 ```bash
 git add .
-git commit -m "fix: resolve GitHub Pages white screen (dynamic base path & .nojekyll)"
+git commit -m "fix: add package-lock.json, upgrade workflow to Node 22, and resilient npm install"
 git push origin main
 ```
+Your GitHub Actions runner will now install dependencies smoothly without errors and deploy your site to GitHub Pages!
+
 GitHub Actions will automatically rebuild and deploy within ~1 minute, and your site will render immediately!
 
 ---
